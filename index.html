@@ -65,21 +65,43 @@
 			#banner>small {
 				font-size: 24px;
 			}
+
+			h3, p {
+				color: white;
+			}
+
+			h3 {
+				text-align: center;
+			}
+
+			p {
+				font-size: 16px;
+			}
+
+			h4 {
+				font-size: 16px;
+				color: white;
+				text-align: center;
+			}
+
+			main::-webkit-scrollbar {
+			    width: 1em;
+			}
+			 
+			main::-webkit-scrollbar-track {
+			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+			}
+			 
+			main::-webkit-scrollbar-thumb {
+			  background-color: #4C0827;
+			  outline: 1px solid slategrey;
+			}
 		</style>
 	</head>
 	<body>
 		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 		  <header class="mdl-layout__header">
 		    <div class="mdl-layout__header-row">
-		      <!-- Add spacer, to align navigation to the right -->
-		      <div class="mdl-layout-spacer"></div>
-		      <!-- Navigation. We hide it in small screens. -->
-		      <nav class="mdl-navigation mdl-layout--large-screen-only">
-		        <a class="mdl-navigation__link" href="">Link</a>
-		        <a class="mdl-navigation__link" href="">Link</a>
-		        <a class="mdl-navigation__link" href="">Link</a>
-		        <a class="mdl-navigation__link" href="">Link</a>
-		      </nav>
 		    </div>
 		  </header>
 		  <main class="mdl-layout__content">
@@ -89,18 +111,42 @@
 		    		<small>Improving the accuracy of speech to text recognition through the use of lip reading</small>
 		    	</h1>
 
-		    	<div class="mdl-grid">
-				  <div class="mdl-cell mdl-cell--4-col">4</div>
-				  <div class="mdl-cell mdl-cell--4-col">4</div>
-				  <div class="mdl-cell mdl-cell--4-col">4</div>
-				</div>
+		    	<h3>Inspiration</h3>
+		    	<p class="mdl-cell mdl-cell--8-col mdl-cell--2-offset">
+		    		Our main goal for Viseme is to assist those who are deaf or hearing impaired to better understand and communicate with those around them. Although speech-to-text recognition software already exists, its inability to recognize speech in loud noise conditions limits its effectiveness. By augmenting existing speech recognition systems with lip reading, Viseme transcends these constraints and provides more accurate predictions than ordinary speech-to-text solutions.
+		    	</p>
+		    	<h3>What it does</h3>
+		    	<p class="mdl-cell mdl-cell--8-col mdl-cell--2-offset">
+		    		Viseme uses the standard HTML5 Voice Recognition API for basic speech-to-text functionality. When ambient noise exceeds the threshold where voice recognition becomes no longer accurate, Viseme switches to device camera for lip reading. The video is streamed to Viseme machine learning engine running a neural network; recognized text is sent back to the frontend to be displayed as subtitles. Once the noise level drops, the system reverts back to audio-only speech-to-text recognition.
+		    	</p>
+		    	<h3>How we built it</h3>
+		    	<p class="mdl-cell mdl-cell--8-col mdl-cell--2-offset">
+		    		The machine learning engine driving Viseme is trained on speakers pronouncing sets of most commonly used phrases. Training videos are cropped down to speakers’ lips and normalized spatially and temporally; the processed dataset is used to train a Multilayer Perceptron neural network.
+					<br><br>
+					Viseme's machine learning engine is based on the work by Bernstein, Leitman and Sandler of Ben Gurion University. Being one of the few open source lip reading solutions, the engine competes with Google Deepmind's state-of-the-art 46.8% accuracy achieved in 2016.
+		    	</p>
+		    	<h3>Challenges we ran into</h3>
+		    	<p class="mdl-cell mdl-cell--8-col mdl-cell--2-offset">
+		    		According to Prof. Richard Harvey of University of East Anglia, "lip-reading is one of the most challenging problems in artificial intelligence" (2016). This is an apt description of the problem we tackled.
+					<br><br>
+					An example of the problem we faced was compiling and building the aforementioned lips-reading library, which was created 5 years ago. Most of dependencies were out-dated, and it took considerable amount of time to get it running. Another challenge was connecting all the components: the frontend client, the backend server responsible for voice recognition and another server which was actually performing the lip reading. While it is infeasible to solve such a complex problem in a few days, we definitely managed to achieve great results and give inspiration for further projects in this area.
+		    	</p>
+		    	<h3>What we learned</h3>
+		    	<p class="mdl-cell mdl-cell--8-col mdl-cell--2-offset">
+		    		We learned a lot about the cutting edge research involved in lip reading AI and the many difficulties that surround the area. In doing so, we learned the principles and techniques required in implementing a viable solution. We also learned how to write a web socket server in Java that accepts a continuous stream of video frames from a client page, which turned out to be far more complicated than doing the same in Node.js.
+		    	</p>
+		    	<h3>What's next for Viseme</h3>
+		    	<p class="mdl-cell mdl-cell--8-col mdl-cell--2-offset">
+		    		The biggest step moving forward would be to increase the accuracy of the lip reading. To do so requires far more time and training data, and even more time to analyze the results and continue tweaking the algorithms. Continuing Viseme as a project would serve as a perfect research opportunity into the field of machine learning, and would result in an incredibly practical technology.
+		    	</p>
+		    	<h4><strong>TL;DR: Making a lip reading AI is pretty damn hard</strong></h4>
 		    </div>
 		  </main>
 			<footer class="mdl-mini-footer">
 				<div class="mdl-mini-footer__left-section">
 					<ul class="mdl-mini-footer__link-list">
 					  <li><a href="https://github.com/Viseme/server">Viseme Server</a></li>
-					  <li><a href="#">Visime Client</a></li>
+					  <li><a href="https://github.com/Viseme/client">Visime Client</a></li>
 					  <li><a href="https://devpost.com/software/viseme">Devpost Submission</a></li>
 					</ul>
 				</div>
